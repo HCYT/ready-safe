@@ -8,6 +8,8 @@ import CasualtyCare from './pages/CasualtyCare';
 import Misinformation from './pages/Misinformation';
 import MentalPreparedness from './pages/MentalPreparedness';
 import Contributions from './pages/Contributions';
+import EmergencyContacts from './pages/EmergencyContacts';
+import UnitedFront from './pages/UnitedFront';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +23,8 @@ const App: React.FC = () => {
           <Route path="misinformation" element={<Misinformation />} />
           <Route path="mental" element={<MentalPreparedness />} />
           <Route path="contributions" element={<Contributions />} />
+          <Route path="emergency-contacts" element={<EmergencyContacts />} />
+          <Route path="united-front" element={<UnitedFront />} />
         </Route>
       </Routes>
     </BrowserRouter>

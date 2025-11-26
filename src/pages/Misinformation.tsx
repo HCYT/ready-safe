@@ -24,19 +24,59 @@ const Misinformation: React.FC = () => {
                         <AlertTriangle size={256} />
                     </div>
 
-                    <div style={{ position: 'relative', zIndex: 10 }}>
+                    <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                         {data.content.subsections.map((sub, index) => (
                             <div key={index}>
                                 <h2 className="block-title">{sub.title}</h2>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', lineHeight: 1.8, color: 'var(--c-text-secondary)' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.8, color: 'var(--c-text-secondary)' }}>
                                     {sub.content?.split('\n').map((line, i) => {
+                                        // 跳過空行
+                                        if (!line.trim()) return null;
+                                        
+                                        // 處理 ### 標題
+                                        if (line.startsWith('### ')) {
+                                            return (
+                                                <h3 key={i} style={{ fontSize: '1rem', fontWeight: 600, marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--c-text-primary)' }}>
+                                                    {line.replace('### ', '')}
+                                                </h3>
+                                            );
+                                        }
+                                        
+                                        // 處理列表項目
+                                        if (line.startsWith('- ')) {
+                                            const parts = line.substring(2).split('**');
+                                            return (
+                                                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                                                    <div style={{ marginTop: '0.5rem', width: '0.375rem', height: '0.375rem', borderRadius: '50%', backgroundColor: 'var(--c-warning)', flexShrink: 0 }} />
+                                                    <div>
+                                                        {parts.map((part, idx) =>
+                                                            idx % 2 === 1 ? <span key={idx} style={{ fontWeight: 700, color: 'var(--c-text-primary)', backgroundColor: '#fffbeb', padding: '0 0.25rem', borderRadius: '0.25rem' }}>{part}</span> : part
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            );
+                                        }
+                                        
+                                        // 處理編號項目
+                                        if (/^\d+\.\s/.test(line)) {
+                                            const parts = line.split('**');
+                                            return (
+                                                <div key={i} style={{ marginBottom: '0.5rem' }}>
+                                                    {parts.map((part, idx) =>
+                                                        idx % 2 === 1 ? <span key={idx} style={{ fontWeight: 700, color: 'var(--c-text-primary)', backgroundColor: '#fffbeb', padding: '0 0.25rem', borderRadius: '0.25rem' }}>{part}</span> : part
+                                                    )}
+                                                </div>
+                                            );
+                                        }
+                                        
+                                        // 處理粗體段落
                                         const parts = line.split('**');
                                         return (
-                                            <div key={i} style={{ paddingLeft: line.startsWith('-') ? '1rem' : 0 }}>
+                                            <p key={i} style={{ marginBottom: '0.5rem' }}>
                                                 {parts.map((part, idx) =>
                                                     idx % 2 === 1 ? <span key={idx} style={{ fontWeight: 700, color: 'var(--c-text-primary)', backgroundColor: '#fffbeb', padding: '0 0.25rem', borderRadius: '0.25rem' }}>{part}</span> : part
                                                 )}
-                                            </div>
+                                            </p>
                                         );
                                     })}
                                 </div>

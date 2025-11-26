@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# 臺灣全民安全指引
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 當危機來臨時，有準備更安全。
 
-Currently, two official plugins are available:
+這是一個為臺灣民眾打造的防災與國安指引網站，提供簡單易懂的資訊，幫助每個人在危機時刻保護自己和家人。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 功能特色
 
-## React Compiler
+- **物資準備**：日常居家儲備與緊急避難包清單
+- **災害應對**：地震、颱風、空襲、軍事侵略等應對方式
+- **傷患處理**：基本急救常識（止血、燒燙傷、CPR）
+- **假資訊防範**：資安四不六要、辨識假消息
+- **心理準備**：危機時的心理建設
+- **貢獻一份力**：加入民防、防災士、國軍
+- **緊急專線**：政府機關網站與緊急電話（可直接撥打）
+- **認識統戰**：了解中共統戰手法，不被欺騙
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 離線使用
 
-## Expanding the ESLint configuration
+本網站支援 **PWA（Progressive Web App）**，可完全離線使用：
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. 首次訪問網站後，所有內容會自動快取
+2. 可「加到主畫面」像 App 一樣開啟
+3. 無網路時仍可正常瀏覽所有內容
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 技術架構
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **框架**：React 19 + TypeScript
+- **建置工具**：Vite
+- **樣式**：CSS Variables
+- **圖示**：Lucide React
+- **離線支援**：vite-plugin-pwa + Workbox
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 開發
+
+```bash
+# 安裝依賴
+npm install
+
+# 開發模式
+npm run dev
+
+# 建置
+npm run build
+
+# 預覽建置結果
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 資料來源
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- [臺灣全民安全指引](https://prepare.mnd.gov.tw)（國防部）
+- [揭穿中共統戰陰謀答問](https://www.president.gov.tw)（中華民國六十八年）
+- 2025/11/26 總統國安談話
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 授權
+
+本專案內容參考政府公開資料，僅供教育用途。
+
+---
+
+**天佑臺灣！臺灣加油！**
