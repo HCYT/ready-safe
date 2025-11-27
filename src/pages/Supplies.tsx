@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { manualData } from '../data/manualContent';
 import Checklist from '../components/Checklist';
+import SEO from '../components/SEO';
+import { pageSEO } from '../config/seo';
 import { Backpack, Home as HomeIcon } from 'lucide-react';
 
 const Supplies: React.FC = () => {
     const data = manualData.find(d => d.id === 'supplies');
     const [activeTab, setActiveTab] = useState<'household' | 'personal'>('household');
+    const seo = pageSEO.supplies;
 
     if (!data || !data.content) return null;
 
@@ -14,6 +17,12 @@ const Supplies: React.FC = () => {
 
     return (
         <div className="container section animate-fade-in">
+            <SEO
+                title={seo.title}
+                description={seo.description}
+                keywords={seo.keywords}
+                path={seo.path}
+            />
             <div style={{ maxWidth: '800px', margin: '0 auto' }}>
                 <div className="page-header">
                     <h1 className="page-title">{data.title}</h1>

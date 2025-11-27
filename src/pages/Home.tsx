@@ -1,11 +1,21 @@
 import React from 'react';
 import { manualData } from '../data/manualContent';
 import SectionCard from '../components/SectionCard';
+import SEO from '../components/SEO';
+import { pageSEO } from '../config/seo';
 import { ShieldAlert } from 'lucide-react';
 
 const Home: React.FC = () => {
+    const seo = pageSEO.home;
+    
     return (
         <div className="animate-fade-in">
+            <SEO
+                title={seo.title}
+                description={seo.description}
+                keywords={seo.keywords}
+                path={seo.path}
+            />
             {/* Hero Section */}
             <section className="hero">
                 <div className="container">

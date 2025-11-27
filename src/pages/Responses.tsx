@@ -1,6 +1,8 @@
 import React from 'react';
 import { manualData } from '../data/manualContent';
 import Accordion from '../components/Accordion';
+import SEO from '../components/SEO';
+import { pageSEO } from '../config/seo';
 
 // I'll handle simple markdown manually in the component or just render text with newlines.
 // Actually, I'll just use a helper to render the content since I have simple markdown like **bold** and lists.
@@ -74,11 +76,18 @@ const SimpleMarkdown: React.FC<{ content: string }> = ({ content }) => {
 
 const Responses: React.FC = () => {
     const data = manualData.find(d => d.id === 'responses');
+    const seo = pageSEO.responses;
 
     if (!data || !data.content) return null;
 
     return (
         <div className="container section animate-fade-in">
+            <SEO
+                title={seo.title}
+                description={seo.description}
+                keywords={seo.keywords}
+                path={seo.path}
+            />
             <div style={{ maxWidth: '800px', margin: '0 auto' }}>
                 <div className="page-header">
                     <h1 className="page-title">{data.title}</h1>

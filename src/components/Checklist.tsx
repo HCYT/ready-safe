@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Check, Square } from 'lucide-react';
 
 interface ChecklistItemProps {
@@ -8,14 +8,11 @@ interface ChecklistItemProps {
 }
 
 const ChecklistItem: React.FC<ChecklistItemProps> = ({ label, description, id }) => {
-    const [isChecked, setIsChecked] = useState(false);
-
-    useEffect(() => {
+    // 使用 lazy initialization 從 localStorage 讀取初始值
+    const [isChecked, setIsChecked] = useState(() => {
         const saved = localStorage.getItem(`checklist-${id}`);
-        if (saved) {
-            setIsChecked(JSON.parse(saved));
-        }
-    }, [id]);
+        return saved ? JSON.parse(saved) : false;
+    });
 
     const toggleCheck = () => {
         const newState = !isChecked;

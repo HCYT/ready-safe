@@ -1,14 +1,23 @@
 import React from 'react';
 import { manualData } from '../data/manualContent';
+import SEO from '../components/SEO';
+import { pageSEO } from '../config/seo';
 import { Brain } from 'lucide-react';
 
 const MentalPreparedness: React.FC = () => {
     const data = manualData.find(d => d.id === 'mental');
+    const seo = pageSEO.mental;
 
     if (!data || !data.content) return null;
 
     return (
         <div className="container section animate-fade-in">
+            <SEO
+                title={seo.title}
+                description={seo.description}
+                keywords={seo.keywords}
+                path={seo.path}
+            />
             <div style={{ maxWidth: '800px', margin: '0 auto' }}>
                 <div className="page-header">
                     <div className="hero-icon" style={{ color: '#9333ea', backgroundColor: '#f3e8ff' }}>
