@@ -59,9 +59,9 @@ export const pageSEO: Record<string, PageSEO> = {
     path: '/emergency-contacts',
   },
   unitedFront: {
-    title: '認識統戰手法 | 臺灣全民安全指引',
-    description: '了解統戰策略與手法，提升全民國防意識。認識各種滲透方式，保護臺灣民主自由。',
-    keywords: '統戰手法,認知作戰,國防意識,民主防衛,臺灣安全,滲透防範',
+    title: '認識敵人 | 臺灣全民安全指引',
+    description: '中共是臺灣的敵國與侵略者。了解敵人的統戰手法與滲透策略，保護臺灣民主自由。',
+    keywords: '中共敵國,統戰手法,認知作戰,國防意識,民主防衛,臺灣安全,侵略者',
     path: '/united-front',
   },
 };

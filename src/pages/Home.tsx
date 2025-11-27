@@ -46,8 +46,20 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
+            {/* Enemy Warning */}
+            <section style={{ backgroundColor: '#fef2f2', padding: '1.5rem 0', borderTop: '3px solid #dc2626' }}>
+                <div className="container">
+                    <p style={{ textAlign: 'center', color: '#991b1b', fontWeight: 600, margin: 0, marginBottom: '0.5rem' }}>
+                        ⚠️ 中華人民共和國（中共）是臺灣的敵國。他們從未放棄武力侵略臺灣。
+                    </p>
+                    <p style={{ textAlign: 'center', color: '#7f1d1d', fontWeight: 700, margin: 0, fontSize: '1.1rem' }}>
+                        臺灣內部可以有不同聲音，但對外必須團結一致。挺共，就是敵人。
+                    </p>
+                </div>
+            </section>
+
             {/* Offline Notice */}
-            <section style={{ backgroundColor: '#f0fdf4', padding: '1.5rem 0' }}>
+            <section style={{ backgroundColor: '#f0fdf4', padding: '1rem 0' }}>
                 <div className="container">
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#166534' }}>
