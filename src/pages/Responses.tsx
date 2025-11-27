@@ -32,6 +32,10 @@ const SimpleMarkdown: React.FC<{ content: string }> = ({ content }) => {
             {lines.map((line, i) => {
                 const trimmedLine = line.trim();
 
+                if (trimmedLine.startsWith('#### ')) {
+                    return <h4 key={i} style={{ fontSize: '1rem', fontWeight: 600, marginTop: '0.75rem', marginBottom: '0.25rem', color: 'var(--c-text-primary)' }}>{trimmedLine.replace('#### ', '')}</h4>;
+                }
+
                 if (trimmedLine.startsWith('### ')) {
                     return <h3 key={i} style={{ fontSize: '1.125rem', fontWeight: 700, marginTop: '1rem', marginBottom: '0.5rem', color: 'var(--c-text-primary)' }}>{trimmedLine.replace('### ', '')}</h3>;
                 }

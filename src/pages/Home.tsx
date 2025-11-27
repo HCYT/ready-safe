@@ -3,7 +3,7 @@ import { manualData } from '../data/manualContent';
 import SectionCard from '../components/SectionCard';
 import SEO from '../components/SEO';
 import { pageSEO } from '../config/seo';
-import { ShieldAlert } from 'lucide-react';
+import { ShieldAlert, WifiOff } from 'lucide-react';
 
 const Home: React.FC = () => {
     const seo = pageSEO.home;
@@ -46,6 +46,21 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
+            {/* Offline Notice */}
+            <section style={{ backgroundColor: '#f0fdf4', padding: '1.5rem 0' }}>
+                <div className="container">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#166534' }}>
+                            <WifiOff size={20} />
+                            <span style={{ fontWeight: 600 }}>本網站支援離線使用</span>
+                        </div>
+                        <span style={{ color: '#15803d' }}>
+                            安裝至手機主畫面後，即使沒有網路也能查閱所有內容
+                        </span>
+                    </div>
+                </div>
+            </section>
+
             {/* Sections Grid */}
             <section id="sections" className="section">
                 <div className="container">
@@ -62,6 +77,50 @@ const Home: React.FC = () => {
                                 path={section.path}
                             />
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* App Download Section */}
+            <section style={{ backgroundColor: 'var(--c-bg)', padding: '3rem 0' }}>
+                <div className="container">
+                    <h2 className="page-title" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                        現在馬上可以做的事！
+                    </h2>
+                    <p style={{ textAlign: 'center', color: 'var(--c-text-secondary)', marginBottom: '2rem' }}>
+                        手機下載防災 App，危機時立刻使用
+                    </p>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', maxWidth: '800px', margin: '0 auto' }}>
+                        {/* 消防防災 e 點通 */}
+                        <div className="card" style={{ textAlign: 'center' }}>
+                            <h3 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '0.5rem' }}>消防防災 e 點通</h3>
+                            <p style={{ color: 'var(--c-text-secondary)', fontSize: '0.9rem', marginBottom: '1rem' }}>
+                                查看避難收容處所、救濟站、物資配售站位置，接收即時警報
+                            </p>
+                            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                                <a href="https://apps.apple.com/tw/app/%E6%B6%88%E9%98%B2%E9%98%B2%E7%81%BDe%E9%BB%9E%E9%80%9A/id1500403641" target="_blank" rel="noopener noreferrer">
+                                    <img src="/ios-download.svg" alt="Download on App Store" style={{ height: '40px' }} />
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.nfa.report" target="_blank" rel="noopener noreferrer">
+                                    <img src="/android-download.svg" alt="Get it on Google Play" style={{ height: '40px' }} />
+                                </a>
+                            </div>
+                        </div>
+                        {/* 警政服務 */}
+                        <div className="card" style={{ textAlign: 'center' }}>
+                            <h3 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '0.5rem' }}>警政服務</h3>
+                            <p style={{ color: 'var(--c-text-secondary)', fontSize: '0.9rem', marginBottom: '1rem' }}>
+                                查看防空避難所位置，接收即時警報資訊
+                            </p>
+                            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                                <a href="https://apps.apple.com/tw/app/%E8%AD%A6%E6%94%BF%E6%9C%8D%E5%8B%99/id544121843" target="_blank" rel="noopener noreferrer">
+                                    <img src="/ios-download.svg" alt="Download on App Store" style={{ height: '40px' }} />
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=tw.gov.npa.callservice" target="_blank" rel="noopener noreferrer">
+                                    <img src="/android-download.svg" alt="Get it on Google Play" style={{ height: '40px' }} />
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

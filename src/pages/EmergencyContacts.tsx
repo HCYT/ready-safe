@@ -55,9 +55,30 @@ const EmergencyContacts: React.FC = () => {
                     );
                 }
             }
-            // Handle regular list items
+            // Handle list items with markdown links (e.g., - 🍎 [text](url))
             if (line.startsWith('- ')) {
-                const parts = line.substring(2).split('**');
+                const content = line.substring(2);
+                const linkMatch = content.match(/^(.*)?\[([^\]]+)\]\(([^)]+)\)(.*)$/);
+                
+                if (linkMatch) {
+                    const [, prefix, linkText, url, suffix] = linkMatch;
+                    return (
+                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                            <span>{prefix}</span>
+                            <a
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: 'var(--c-primary)', fontWeight: 600, textDecoration: 'none' }}
+                            >
+                                {linkText}
+                            </a>
+                            <span style={{ color: 'var(--c-text-secondary)' }}>{suffix}</span>
+                        </div>
+                    );
+                }
+                
+                const parts = content.split('**');
                 return (
                     <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.5rem' }}>
                         <div style={{ marginTop: '0.375rem', width: '0.5rem', height: '0.5rem', borderRadius: '50%', backgroundColor: 'var(--c-primary)', flexShrink: 0 }} />

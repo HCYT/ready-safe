@@ -33,12 +33,49 @@ const CasualtyCare: React.FC = () => {
                             <h2 className="block-title">
                                 {sub.title}
                             </h2>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                                 {sub.content?.split('\n').map((line, i) => {
+                                    // 跳過空行
+                                    if (!line.trim()) return null;
+                                    
+                                    // 處理 ### 標題
+                                    if (line.startsWith('### ')) {
+                                        return (
+                                            <h3 key={i} style={{ fontSize: '1.1rem', fontWeight: 700, marginTop: '1rem', marginBottom: '0.25rem', color: 'var(--c-text-primary)' }}>
+                                                {line.replace('### ', '')}
+                                            </h3>
+                                        );
+                                    }
+                                    
+                                    // 處理 #### 標題
+                                    if (line.startsWith('#### ')) {
+                                        return (
+                                            <h4 key={i} style={{ fontSize: '1rem', fontWeight: 600, marginTop: '0.75rem', marginBottom: '0.25rem', color: 'var(--c-text-primary)' }}>
+                                                {line.replace('#### ', '')}
+                                            </h4>
+                                        );
+                                    }
+                                    
+                                    // 處理列表項目
+                                    if (line.startsWith('- ')) {
+                                        const parts = line.substring(2).split('**');
+                                        return (
+                                            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginLeft: '0.5rem' }}>
+                                                <div style={{ marginTop: '0.5rem', width: '0.375rem', height: '0.375rem', borderRadius: '50%', backgroundColor: 'var(--c-danger)', flexShrink: 0 }} />
+                                                <div style={{ color: 'var(--c-text-secondary)' }}>
+                                                    {parts.map((part, idx) =>
+                                                        idx % 2 === 1 ? <strong key={idx} style={{ fontWeight: 700, color: 'var(--c-text-primary)' }}>{part}</strong> : part
+                                                    )}
+                                                </div>
+                                            </div>
+                                        );
+                                    }
+                                    
+                                    // 處理編號項目
                                     if (line.match(/^\d+\. /)) {
                                         const parts = line.split('**');
                                         return (
-                                            <div key={i} style={{ display: 'flex', gap: '1rem' }}>
+                                            <div key={i} style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
                                                 <div style={{ flexShrink: 0, width: '2rem', height: '2rem', borderRadius: '50%', backgroundColor: '#fef2f2', color: 'var(--c-danger)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.875rem' }}>
                                                     {line.match(/^\d+/)?.[0]}
                                                 </div>
@@ -50,7 +87,25 @@ const CasualtyCare: React.FC = () => {
                                             </div>
                                         );
                                     }
-                                    return <p key={i} style={{ color: 'var(--c-text-secondary)', paddingLeft: '3rem' }}>{line}</p>;
+                                    
+                                    // 處理警告文字
+                                    if (line.startsWith('⚠️')) {
+                                        return (
+                                            <div key={i} style={{ marginTop: '0.5rem', padding: '0.75rem 1rem', backgroundColor: '#fef3c7', borderRadius: '0.5rem', color: '#92400e' }}>
+                                                {line}
+                                            </div>
+                                        );
+                                    }
+                                    
+                                    // 一般段落
+                                    const parts = line.split('**');
+                                    return (
+                                        <p key={i} style={{ color: 'var(--c-text-secondary)' }}>
+                                            {parts.map((part, idx) =>
+                                                idx % 2 === 1 ? <strong key={idx} style={{ fontWeight: 700, color: 'var(--c-text-primary)' }}>{part}</strong> : part
+                                            )}
+                                        </p>
+                                    );
                                 })}
                             </div>
                         </div>
